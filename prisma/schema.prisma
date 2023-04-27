@@ -20,6 +20,7 @@ model Folha {
   bruto Float?
   irrf Float?
   inss Float?
+  fgts Float?
   liquido Float?
 
 
