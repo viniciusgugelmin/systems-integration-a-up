@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Folha {
+  id        Int @id @default(autoincrement())
+  mes  Int
+  ano Int
+  horas Float
+  valor Float
+  funcionario_cpf String
+  bruto Float?
+  irrf Float?
+  inss Float?
+  liquido Float?
+
+
+funcionario Funcionario @relation (fields: [funcionario_cpf], references: [cpf]) 
+}
+model Funcionario {
+  nome String
+  cpf String @id
+  
+  folha Folha[]
+}
