@@ -1,0 +1,11 @@
+## Build
+dist
+node_modules
+
+## Environment variables
+.env*
+!.env.example
+prisma/dev.db
+
+## Idea
+.idea
