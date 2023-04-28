@@ -25,7 +25,7 @@ class RootRepository {
     return database.folha.findMany({
       where: {
         id: {
-          not: exceptId,
+          notIn: exceptId,
         },
       },
       include: {

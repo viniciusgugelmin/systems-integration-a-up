@@ -25,7 +25,7 @@ class RootService {
     const { folhasProcessadas } = data;
 
     const folhas = await rootRepository.getAll({
-      exceptId: folhasProcessadas.data.map((folha) => folha.id),
+      exceptId: folhasProcessadas.map((folha) => folha.id),
     });
     const folhasCalculadas = folhas.map((folha) => {
       folha.bruto = this.calcularSalarioBruto(folha.horas, folha.valor);
@@ -38,12 +38,13 @@ class RootService {
         folha.inss,
         folha.fgts
       );
+
+      return folha;
     });
 
-    const response = await axios.post(
-      `${apiB}/folha/cadastrar`,
-      folhasCalculadas
-    );
+    console.log(folhasCalculadas);
+
+    await axios.post(`${apiB}/folha/cadastrar`, folhasCalculadas);
   }
 
   private calcularSalarioBruto(horas, valor): number {

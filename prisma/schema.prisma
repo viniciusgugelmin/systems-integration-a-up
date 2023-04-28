@@ -28,7 +28,7 @@ funcionario Funcionario @relation (fields: [funcionario_cpf], references: [cpf])
 }
 model Funcionario {
   nome String
-  cpf String @id
+  cpf String @id @unique
   
   folha Folha[]
 }
